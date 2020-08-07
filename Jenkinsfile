@@ -1,11 +1,8 @@
 pipeline {
-    environment {
-    registry = "arnabnath96/python-jenkins"
-    registryCredential = 'dockerhub'
-  }
+    
     agent any
     tools{
-        dockerTool "docker"
+        dockerTool "docker1"
     }
     stages {
         
@@ -17,7 +14,7 @@ pipeline {
          stage('Deploy') {
             steps {
                 script {
-                     withDockerRegistry(credentialsId: 'jenkinstest', toolName: 'docker', url: 'https://hub.docker.com') {
+                     withDockerRegistry(credentialsId: 'jenkinstest', toolName: 'docker1'){
                         
                      def echoServerImage = docker.build("arnabnath96/jenkins-webserver:latest");
                      echoServerImage.push();
